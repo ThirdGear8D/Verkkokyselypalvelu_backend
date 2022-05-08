@@ -72,6 +72,9 @@ table {
 	background-size: cover;
 	background-position: center;
 }
+.btn-primary {
+	background-color: #24B5DF !important;
+}
 </style>
 
 
@@ -88,8 +91,12 @@ table {
 	</section>
 
 	<div class="container">
+		<h6 th:inline="text">Olet kirjautuneena nimelllä [[${#httpServletRequest.remoteUser}]]</h6>
 		<h2>
-			<b> Tervetuloa Verkkokyselypalveluun!</b>
+			<div class="col-md-4"></div>
+			
+			<b> Tervetuloa Verkkokyselypalveluun !</b>
+			
 		</h2>
 		<br> <br>
 		<div class="row align-items-md-stretch">

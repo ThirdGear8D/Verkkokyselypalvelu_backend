@@ -1,7 +1,5 @@
 package ThirdGear.Kyselypalvelu_backend.domain;
-
-
-
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,9 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 
 
@@ -22,33 +23,31 @@ public class Kysymys {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long kysymysid;
     private String kysymysteksti;
-    private String vastaustyyppi;
-
+    private Boolean pakollinen;
     
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "kysymys")
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "id") 
+    @JoinColumn(name = "kyselyid", referencedColumnName = "id") 
     private Kysely kysely;
-
     
+     
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "kysymys")
+    private List<Vastaus> vastaukset;
+
+  
+
  
     public Kysymys() {
     	super();
     	this.kysymysteksti = null;
-    	this.vastaustyyppi = null;
     	this.kysely = null;
+    	this.pakollinen = false;
     }
     
     
-	public Kysymys(String kysymysteksti, String vastaustyyppi, Kysely kysely) {
-		super();
-		this.kysymysteksti = kysymysteksti;
-		this.kysely = kysely;
-		this.vastaustyyppi = vastaustyyppi;
-		
-	}		
+ 
 
 
 	
@@ -65,12 +64,11 @@ public class Kysymys {
 	public Kysely getKysely() {
 		return kysely;
 	}
-
-	public String getVastaustyyppi() {
-		return vastaustyyppi;
+	
+	public Boolean getPakollinen() {
+		return pakollinen;
 	}
-	
-	
+
 //----- SET --------------------------------------------------------
 	
 	public void setId(Long kysymysid) {
@@ -84,17 +82,18 @@ public class Kysymys {
 	public void setKysely(Kysely kysely) {
 		this.kysely = kysely;
 	}
-
-	public void setVastaustyyppi(String vastaustyyppi) {
-		this.vastaustyyppi = vastaustyyppi;
+	 
+	public void setPakollinen(Boolean pakollinen) {
+		this.pakollinen = pakollinen;
 	}
+	
 
 	
 	@Override
 	public String toString() {
 		if (this.kysely != null)
-			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ",vastaustyyppi=" + vastaustyyppi + ", kysely =" + this.getKysely() + "]";		
+			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", pakollinen=" + pakollinen + ",  kysely =" + this.getKysely() + "]";		
 		else
-			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + "]";	
+			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", pakollinen=" + pakollinen + "]";	
 	}
 }

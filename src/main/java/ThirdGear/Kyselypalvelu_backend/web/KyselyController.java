@@ -25,37 +25,23 @@ public class KyselyController {
 	@Autowired
 	private KyselyRepo kyselyrepo;
 
-	@Autowired
-	private KysymysRepo kysymysrepo;
+
+// LOGIN-SIVU ***********************************************************
+    @RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }
+//***********************************************************************
+    
+    
 	
-
-
-// *********** REST **************************************************************************
-
-// 1 . REST kaikkien kyselyiden hakuun
-	@RequestMapping(value = "/api/kyselyt")
-	public @ResponseBody List<Kysely> kyselyListaRest() {
-		return (List<Kysely>) kyselyrepo.findAll();
-	}
-
-// 2.  REST hakee kyselyn id:n perusteella  th:href="@{kysely/{id}(id=${kysely.id})}"
-	@RequestMapping(value = "/api/kysely/{id}", method = RequestMethod.GET)
-	public @ResponseBody Optional<Kysely> findKyselyRest(@PathVariable("id") Long id) {
-		return kyselyrepo.findById(id);
-	}
-
-// ******************************************************************************************
-
-
-	
-	
-// 3. KAIKKIEN KYSELYIDEN LISTAAMINEN jA TYHJÄN LOMAKKEEN NÄYTTÄMINEN
-// 4. KYSELYN TALLENNUS	
-// 5. KYSELYN POISTAMINEN
+// 1. KAIKKIEN KYSELYIDEN LISTAAMINEN jA TYHJÄN LOMAKKEEN NÄYTTÄMINEN
+// 2. KYSELYN TALLENNUS	
+// 3. KYSELYN POISTAMINEN
 	
 	
 	
-// 3. ---------------KAIKKIEN KYSELYIDEN LISTAAMINEN JA TYHJÄN LOMAKKEEN NÄYTTÄMINEN--------------------------------------------------------------------	
+// 1. ---------------KAIKKIEN KYSELYIDEN LISTAAMINEN JA TYHJÄN LOMAKKEEN NÄYTTÄMINEN--------------------------------------------------------------------	
 	@RequestMapping(value = "/kyselyt")
 	public String kyselyLista(Model model) {
 		model.addAttribute("kyselyt", kyselyrepo.findAll());
@@ -64,7 +50,7 @@ public class KyselyController {
 	}	
 	
 	
-// 5. ---------------KYSELYN TALLENNUS --------------------------------------------------------------------	
+// 2. ---------------KYSELYN TALLENNUS --------------------------------------------------------------------	
  
 	@RequestMapping(value = "/tallenna", method = RequestMethod.POST)
 	public String tallenna(Kysely kysely) {
@@ -72,7 +58,7 @@ public class KyselyController {
 		return "redirect:kyselyt";
 	}
 	
-// 6. ---------------KYSELYN POISTAMINEN --------------------------------------------------------------------	
+// 3. ---------------KYSELYN POISTAMINEN --------------------------------------------------------------------	
 
 		@RequestMapping(value = "poista/kysely/{id}", method = RequestMethod.GET)
 		public String poistaKysely(@PathVariable("id") Long id) {

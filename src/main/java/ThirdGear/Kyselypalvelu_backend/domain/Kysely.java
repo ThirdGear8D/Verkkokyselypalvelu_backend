@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 
 
 
+
 @Entity
 public class Kysely {
 	
@@ -25,12 +26,13 @@ public class Kysely {
 	
 //Kyselyllä on monta kysymystä mutta Kysymys kuuluu vain yhteen Kyselyyn	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kysely")
-
-	
-// --- MUODOSTETAAN LISTA KYSYMYKSISTÄ	
 	private List<Kysymys> kysymykset;
 	
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kysely")
+	private List<Vastaus> vastaukset;
+	
+
 	
 // ---------------------------------------------------------------------------------------------------------------
 	
@@ -39,24 +41,9 @@ public class Kysely {
 		this.nimi = null;
 		this.kuvaus = null;
 		this.kysymykset = null;
+		this.vastaukset = null;
 	}
 	
-	
-	
-	public Kysely (String nimi, List<Kysymys> kysymykset) {
-		super();
-		this.nimi = nimi;
-		this.kysymykset = kysymykset;
-	}
-
-	
-	
-	public Kysely (String nimi, String kuvaus, List<Kysymys> kysymykset) {
-		super();
-		this.nimi = nimi;
-		this.kuvaus = kuvaus;
-		this.kysymykset = kysymykset;
-	}
 	
 	
 	
@@ -84,6 +71,13 @@ public class Kysely {
 		return kysymykset.size();
 	}
 	
+	public List<Vastaus> getVastaukset() {
+		return vastaukset;
+	}
+	
+
+	
+	
 //----- SET ---------------------------------------------------------	
 	
 	public void setId(Long id) {
@@ -103,6 +97,10 @@ public class Kysely {
 		this.kysymykset = kysymykset;
 	}
 	
+	public void setVastaukset(List<Vastaus> vastaukset) {
+		this.vastaukset = vastaukset;
+	}
+
 	
 // ---- STRING TO STRING ----------------------------------------------------
 	
@@ -112,4 +110,5 @@ public class Kysely {
 		return "Kysely [id=" +id + ", nimi=" + nimi   + "]";
 		
 	}
+
 }
