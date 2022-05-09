@@ -1,5 +1,6 @@
 package ThirdGear.Kyselypalvelu_backend.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,6 +28,7 @@ public class Kysely {
 //Kyselyllä on monta kysymystä mutta Kysymys kuuluu vain yhteen Kyselyyn	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kysely")
 	private List<Kysymys> kysymykset;
+	
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kysely")

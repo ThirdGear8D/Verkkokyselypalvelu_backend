@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ThirdGear.Kyselypalvelu_backend.domain.Kysely;
 import ThirdGear.Kyselypalvelu_backend.domain.KyselyRepo;
 import ThirdGear.Kyselypalvelu_backend.domain.Kysymys;
@@ -61,7 +60,8 @@ public class KysymysController {
 	 // Tallenna uusi kysymys kyselyyn ja ohjaa kyselyyn takaisin tallennuksen jälkeen
 	 	@RequestMapping(value = "/kysely/{id}/tallennakysymys", method = RequestMethod.POST)
 	 	public String tallennaKysymys(@PathVariable("id") Long id, @ModelAttribute Kysymys kysymys) {
-	 		kysymys.setKysymysteksti(kysymys.getKysymysteksti());	 	
+	 		kysymys.setKysymysteksti(kysymys.getKysymysteksti());	
+	 		kysymys.setVastaustyyppi("teksti");
 	 		kysymys.setKysely(kyselyrepo.findById(id).get());
 	 		kysymysrepo.save(kysymys);
 	 		return "redirect:/kysely/{id}";

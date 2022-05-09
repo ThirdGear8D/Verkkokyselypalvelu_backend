@@ -1,4 +1,5 @@
 package ThirdGear.Kyselypalvelu_backend.domain;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class Kysymys {
     private Long kysymysid;
     private String kysymysteksti;
     private Boolean pakollinen;
-    
+    private String vastaustyyppi;
 
     @ManyToOne
     @JsonIgnore
@@ -44,10 +45,9 @@ public class Kysymys {
     	this.kysymysteksti = null;
     	this.kysely = null;
     	this.pakollinen = false;
+    	this.vastaustyyppi = null;
     }
     
-    
- 
 
 
 	
@@ -68,7 +68,9 @@ public class Kysymys {
 	public Boolean getPakollinen() {
 		return pakollinen;
 	}
-
+	public String getVastaustyyppi() {
+		return vastaustyyppi;
+	}
 //----- SET --------------------------------------------------------
 	
 	public void setId(Long kysymysid) {
@@ -87,13 +89,16 @@ public class Kysymys {
 		this.pakollinen = pakollinen;
 	}
 	
-
+	public void setVastaustyyppi(String vastaustyyppi) {
+		this.vastaustyyppi = vastaustyyppi;
+	}
 	
 	@Override
 	public String toString() {
 		if (this.kysely != null)
-			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", pakollinen=" + pakollinen + ",  kysely =" + this.getKysely() + "]";		
+			return  kysymysid +"." + " "+kysymysteksti + " "; 
 		else
-			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ", pakollinen=" + pakollinen + "]";	
+			return kysymysteksti + kysymysteksti;	
 	}
+
 }

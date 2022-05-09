@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
@@ -103,41 +102,20 @@ table {
 		<div class="row align-items-md-stretch">
 
 			<div class="col-md-5">
-				<div class="card border-dark mb-3"
-					style="width: 500px; height: 350px">
-					<h5 class="card-header">Luo tästä uusi kysely:</h5>
-					<div class="card-body">
-
-						<!-- ------------------------------------------------------------------------------------------------------- -->
-						<!--  TALLENNA UUSI KYSELY ------ (tallenna-endpoint mutta uudelleenohjaa kyselyt.html)   - -->
-
-						<form th:action="@{tallenna}" action="#" method="post">
-							<div class="form-group pb-3">
-								<input class="form-control" type="text" id="nimi"
-									placeholder="Kyselyn nimi" th:field="${kysely.nimi}" required />
-								<br>
-
-								<textarea class="form-control" rows="4" id="kuvaus"
-									placeholder="Kyselyn kuvaus" th:field="${kysely.kuvaus}"
-									required></textarea>
-
-							</div>
-							<button class="btn btn-primary" type="submit">Luo</button>
-						</form>
-					</div>
-				</div>
+	
 			</div>
 		</div>
 
 
-
-	<a href="/vastausraportit">Katso kyselyiden vastausraportit</a> <br>
-
-
-
 		<!-- ------------------------------------------------------------------------------------------------------- -->
-		<!--  BOOTSTRAP-TAULUKKO   - -->
-		<div class="container-lista  pt-4">
+		
+		
+	
+	
+	
+	
+<!-- TESTI ------------------------------------------------------------------- -->
+				<div class="container-lista  pt-4">
 
 			<table class="table table-light table-hover table-bordered table-sm">
 				<thead class="table-dark">
@@ -146,7 +124,7 @@ table {
 						<th></th>
 						<th>Nimi</th>
 						<th>Kyselyn kuvaus</th>
-						<th>Kysymysten määrä</th>
+						<th>Kysymykset</th>
 					</tr>
 				</thead>
 
@@ -159,7 +137,8 @@ table {
 						<td><a th:href="@{/kysely/{id}(id=${kysely.id})}"
 							th:text="${kysely.nimi}"></a></td>
 						<td th:text="${kysely.kuvaus}"></td>
-						<td th:text="${kysely.getKysymyksetSize}"></td>
+						<td th:text="${kysely.kysymykset}"></td>
+						
 						<td>
 							<!--  POISTA KYSELY  - --> <a class="btn btn-warning"
 							th:href="@{/poista/kysely/{id}(id=${kysely.id})}">Poista</a>
@@ -168,6 +147,8 @@ table {
 				</tbody>
 			</table>
 		</div>
+	</div>
+<!-- /// ------------------------------------------------------------------- -->
 	<br>
 	<br>
 	<br>
