@@ -49,7 +49,7 @@ public class KysymysController {
 	 		
 	// Uusi kysymys modeliin --> Lomake uuden kysymyksen lisäämiseen -------		
 			model.addAttribute("kysymys", new Kysymys());
-			
+					
 	 		return "kysely";
 	 	}
 	 	
@@ -70,6 +70,7 @@ public class KysymysController {
 // 3. ---------------KYSYMYKSEN POISTAMINEN --------------------------------------------------------------------	
 	 	
 		
+	 	
 	 	// Pathvariable:ksi tarvitaan kyselyn id ("id") sekä kysymyksen id ("kysymysid")
 	 			@RequestMapping(value = "kysely/{id}/poista/{kysymysid}", method = RequestMethod.GET)
 	 			public String poistaKysymys(@PathVariable("id") Long id, @PathVariable("kysymysid") Long kysymysid) {

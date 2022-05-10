@@ -21,7 +21,7 @@ public class Vastaus {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String vastaus;
+	public String vastauskysymykseen;
 	
 
 	
@@ -31,21 +31,21 @@ public class Vastaus {
     private Kysely kysely;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("vastaukset")
+//	@JsonIgnoreProperties("vastaukset")
 	@JoinColumn(name = "kysymysid", referencedColumnName = "kysymysid") 
 	private Kysymys kysymys;
 
 	
 	public Vastaus() {
 		super();
-		this.vastaus = null;
+		this.vastauskysymykseen = null;
 	
 		this.kysymys = null;
 	}
 
 	public Vastaus(String vastaus, Kysymys kysymys) {
 		super();
-		this.vastaus = vastaus;
+		this.vastauskysymykseen = vastaus;
 		
 		this.kysymys = kysymys;
 	}
@@ -70,7 +70,7 @@ public class Vastaus {
 	
 	
 	public String getVastaus() {
-		return vastaus;
+		return vastauskysymykseen;
 	}
 	
 	
@@ -90,8 +90,8 @@ public class Vastaus {
 		this.kysely = kysely;
 	}
 	
-	public void setVastaus(String vastaus) {
-		this.vastaus = vastaus;
+	public void setVastaus(String vastauskysymykseen) {
+		this.vastauskysymykseen = vastauskysymykseen;
 	}
 
 	
@@ -100,7 +100,10 @@ public class Vastaus {
 
 	@Override
 	public String toString() {
-		return "Vastaus [id=" + id + ", vastaus=" + vastaus + ", kysymys=" + kysymys
+	
+		return "Vastaus [kysymys:" + kysymys 
+				+ ", "
+				+ "vastaus:" + vastauskysymykseen
 				+ "]";
 	}
 		

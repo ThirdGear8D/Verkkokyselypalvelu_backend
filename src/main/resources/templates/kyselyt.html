@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
@@ -73,6 +73,7 @@ table {
 	background-size: cover;
 	background-position: center;
 }
+
 .btn-primary {
 	background-color: #24B5DF !important;
 }
@@ -92,12 +93,13 @@ table {
 	</section>
 
 	<div class="container">
-		<h6 th:inline="text">Olet kirjautuneena nimelllä [[${#httpServletRequest.remoteUser}]]</h6>
+		<h6 th:inline="text">Olet kirjautuneena nimelllä
+			[[${#httpServletRequest.remoteUser}]]</h6>
 		<h2>
 			<div class="col-md-4"></div>
-			
+
 			<b> Tervetuloa Verkkokyselypalveluun !</b>
-			
+
 		</h2>
 		<br> <br>
 		<div class="row align-items-md-stretch">
@@ -130,8 +132,10 @@ table {
 		</div>
 
 
-
-	<a href="/vastausraportit">Katso kyselyiden vastausraportit</a> <br>
+		<br>
+		<h5>
+			<a href="/vastausraportit">Katso kyselyiden vastausraportit</a>
+		</h5>
 
 
 
@@ -140,13 +144,14 @@ table {
 		<div class="container-lista  pt-4">
 
 			<table class="table table-light table-hover table-bordered table-sm">
-				<thead class="table-dark">
+				<thead class="thead-dark">
 
 					<tr>
 						<th></th>
 						<th>Nimi</th>
 						<th>Kyselyn kuvaus</th>
 						<th>Kysymysten määrä</th>
+						<th></th>
 					</tr>
 				</thead>
 
@@ -155,6 +160,7 @@ table {
 
 
 					<!--  NÄYTÄ KYSELYT LISTALLA   -->
+
 					<tr th:each="kysely : ${kyselyt}">
 						<td><a th:href="@{/kysely/{id}(id=${kysely.id})}"
 							th:text="${kysely.nimi}"></a></td>
@@ -165,19 +171,18 @@ table {
 							th:href="@{/poista/kysely/{id}(id=${kysely.id})}">Poista</a>
 						</td>
 					</tr>
-				</tbody>
 			</table>
+
+
+
+
+
 		</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div class="container-fluid">
-		<section class="jumbotron2">
-			<div class="container"></div>
-		</section>
-	</div>
+		<br> <br> <br> <br>
+		<div class="container-fluid">
+			<section class="jumbotron2">
+				<div class="container"></div>
+			</section>
+		</div>
 </body>
 </html>
-
-

@@ -83,8 +83,13 @@ table {
 
 
 	<div class="container">
+		<h6 th:inline="text">Olet kirjautuneena nimelllä
+			[[${#httpServletRequest.remoteUser}]]</h6>
 
-		<a href="/kyselyt">Palaa etusivulle, jossa näet kaikki kyselyt</a> <br>
+		<h5>
+			<a href="/kyselyt">Palaa etusivulle, jossa näet kaikki kyselyt</a>
+		</h5>
+
 		<br> <br>
 		<div class="container main">
 
@@ -105,15 +110,13 @@ table {
 					action="#" method="post">
 
 					<input class="form-control col-sm-7 mr-sm-2" type="text" id="nimi"
-						placeholder="Lisää kysymysteksti tähän" th:field="${kysymys.kysymysteksti}"
-						required /> 
-						
-	
-			
-					
-	           <label class="form-control mr-sm-2" for="pakollinen" style="text-align: center">Pakollisuus
-					<input type="checkbox" id="pakollinen" name="pakollinen" value="true" th:field="${kysymys.pakollinen}">
-				</label>
+						placeholder="Lisää kysymysteksti tähän"
+						th:field="${kysymys.kysymysteksti}" required /> <label
+						class="form-control mr-sm-2" for="pakollinen"
+						style="text-align: center">Pakollisuus <input
+						type="checkbox" id="pakollinen" name="pakollinen" value="true"
+						th:field="${kysymys.pakollinen}">
+					</label>
 					<button class="btn btn-primary mr-sm-2" type="submit">Tallenna</button>
 				</form>
 			</div>
@@ -128,31 +131,31 @@ table {
 					<tr>
 						<th></th>
 						<th>Kysymys</th>
-					
 						<th>Pakollisuus</th>
 						<th></th>
 					</tr>
 				</thead>
 
-     
+
 				<!--NÄYTÄ KYSELYN KAIKKI KYSYMYKSET -------------------------------------------------- -->
 
 				<tbody id="tableid">
 					<tr th:each=" kysymys : ${kysely.kysymykset}">
 						<td th:text="${kysymys.kysymysteksti} "></td>
-                        <td th:text="${kysymys.pakollinen} "></td>
-                        <td>	
-					</td>
+						<td th:text="${kysymys.pakollinen} "></td>
+					
+					
 						<!-- POISTA KYSYMYS ---(kyselyn id ja kysymyksen id tarvitaan controllerissa)------------------------------------------------------------------------------------------ -->
 						<td><a class="btn btn-warning "
 							th:href="@{/kysely/{id}/poista/{kysymysid}(id=${kysely.id}, kysymysid=${kysymys.id})}">Poista</a>
 						</td>
-						
+
 					</tr>
-				</tbody>
 			</table>
-			
+
+
 		</div>
+
 	</div>
 	<br>
 	<br>
@@ -163,7 +166,5 @@ table {
 			<div class="container"></div>
 		</section>
 	</div>
-	
-	
 </body>
 </html>
